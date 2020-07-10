@@ -1,0 +1,61 @@
+<form  [formGroup]="form" nz-form novalidate >
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name"
+      >Nombre</nz-form-label
+    >
+    <nz-form-control
+      [nzSm]="14" 
+      [nzXs]="24"
+      nzErrorTip="Debe ingresar un nombre de película"
+    >
+      <input nz-input formControlName="name" id="name" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="created"
+      >Fecha</nz-form-label
+    >
+    <nz-form-control
+      [nzSm]="14"
+      [nzXs]="24"
+      nzErrorTip="Debe ingresar una fecha"
+    >
+      <nz-date-picker
+        [nzFormat]="'dd/MM/yyyy'"
+        formControlName="created"
+      ></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="created"
+      >Estado</nz-form-label
+    >
+    <nz-form-control
+      [nzSm]="14"
+      [nzXs]="24"
+      
+    >
+    <nz-form-item>
+        <nz-switch
+          [nzCheckedChildren]="checkedTemplate"
+          [nzUnCheckedChildren]="unCheckedTemplate"
+          formControlName="isActive"
+        ></nz-switch>
+        <ng-template #checkedTemplate
+          ><i nz-icon nzType="check" aria-hidden="true"></i
+        ></ng-template>
+        <ng-template #unCheckedTemplate
+          ><i nz-icon nzType="close" aria-hidden="true"></i
+        ></ng-template>
+      </nz-form-item>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control>
+      <button nz-button nzType="primary" [disabled]="!form.valid" (click)="save()">Guardar</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

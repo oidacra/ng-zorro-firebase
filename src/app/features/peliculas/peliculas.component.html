@@ -1,0 +1,46 @@
+<nz-page-header
+  class="site-page-header"
+  (nzBack)="onBack()"
+  nzBackIcon
+  nzTitle="Películas"
+  nzSubtitle="Administrador de películas"
+>
+</nz-page-header>
+
+<div nz-row class="table-operations">
+  <div nz-col nzSpan="4" nzOffset="20" class="actions">
+    <button nz-button nzType="primary" (click)="addModal()">Nuevo</button>
+  </div>
+</div>
+<nz-table #sortTable [nzData]="movies" nzSize="small" nzTableLayout="fixed">
+  <thead>
+    <tr>
+      <th *ngFor="let column of listOfColumn">
+        {{ column.title }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of movies; let id = index">
+      <td>{{ id+1 }}</td>
+      <td>{{ data.name }}</td>
+      <td>{{ data.created | firestoreDate:'dd/MM/yyyy' }}</td>
+      <td>
+        <nz-tag [nzColor]="data.isActive ? 'success' : 'default'">{{
+          data.isActive ? "Activo" : "Inactivo"
+        }}</nz-tag>
+      </td>
+      <td [nzAlign]="'right'">
+        <button nz-button nzType="primary" (click)="editModal(data)">
+          <i nz-icon nzType="edit" nzTheme="fill"  aria-hidden="true"></i>
+        </button>
+        <nz-divider nzType="vertical"></nz-divider>
+        <button nz-button nzType="primary" (click)="removeModalConfirm(data)">
+          <i nz-icon nzType="delete" nzTheme="fill" aria-hidden="true"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+
